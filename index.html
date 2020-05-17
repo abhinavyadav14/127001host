@@ -6,6 +6,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
+		body{
+			font-family: courier new;
+			background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(6,123,239,1) 14.2%,rgba(219,115,249,1) 89.5%);
+		}
 	.foot{
 		position:fixed;
 		bottom:0px;
@@ -19,19 +23,20 @@
 	</style>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12 col-xs-12" style="background-color:red;"><strong><h1 style="text-align:center;">MY PROJECTS</h1></strong></div>
+		<div class="col-md-4"><h2><strong>Project Description</strong></h2></div>
+		<div class="col-md-8 col-xs-12" style="background: linear-gradient(to left, #91eae4, #86a8e7, #7f7fd5); border-radius: 8px;"><strong><h1 style="text-align:center;">MY PROJECTS</h1></strong></div>
 	</div>
 	<div class="row">
-		<div class="col-md-4" style="background-color:darkorange;"><h3><strong>Nothing Yet!</strong></h3></div>
+		<div class="col-md-4" style="background: linear-gradient(to left, #91eae4, #86a8e7, #7f7fd5); border-radius: 8px;"><h3><strong>Nothing Yet!</strong></h3></div>
 		<div class="col-md-8 col-xs-12">
 		<ul>
-		<li><a href="./expanse.py">Expanse python console program</a></li>
+		<li><a href="./expanse.py" style="color:black;">Expanse python console program</a></li>
 		</ul>
 		</div>
 	</div>
-	<div class="foot">@copyright 127001host</div>
 	</div>
+	<div class="foot">@copyright 127001host</div>
 </body>
 </html>
