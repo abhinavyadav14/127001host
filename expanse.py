@@ -14,7 +14,7 @@ class expanse:#{
                 print(self.expanse[0][0])
             #}
             else:#{
-                na = input("Enter the"+str(i)+" name:\r")
+                na = input("Enter the"+str(i)+" name:\n>>")
                 self.expanse[0][i] = na
                 self.expanse[i][0] = na
             #}
@@ -82,12 +82,12 @@ class expanse:#{
 #}
 
 def menu():#{
-        m = int(input("Enter the number of members"))
+        m = int(input("Enter the number of members:"))
         ex = expanse(m)
         ex.addNames()
         r = 1
         while(r != 0):
-            r = int(input(Fore.BLUE+"Select an option from Below:\n1. Add a expanse\n2. Show Expanse\n3. who will get how much\n4. who will pay how much\n5. Expanse of a single person"+Fore.RED+"\n0 to exit"+Fore.RESET))
+            r = int(input(f"{Fore.BLUE}Select an option from Below:\n1. Add a expanse\n2. Show Expanse\n3. who will get how much\n4. who will pay how much\n5. Expanse of a single person{Fore.RED}\n0 to exit\n{Fore.GREEN}>>{Fore.RESET}"))
             if(r == 1):
                 ex.addExpanse()
             elif(r == 2):
@@ -98,6 +98,8 @@ def menu():#{
                 ex.totalPay()
             elif(r == 5):
                 ex.singleExpanse()
+            elif(r == 0):
+                print("Exiting the console application.....")
             else:
                 print("invalid input")
 #}
