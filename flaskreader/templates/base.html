@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            reader
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+        <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+    </head>
+    <body>
+        <div class="header_container" id="container">
+            <div class="loc">
+                <input type="text" id="file" value="static/manga/Black_Haze/">
+                <button id="b1">get</button>
+            </div>
+            <div class="chp">Chapter number</div>
+        </div>
+        <div class="reader">
+            <div class="prev"></div>
+            <div class="images"></div>
+            <div class="next"></div>
+        </div>
+        <div class="upButton"><a href="#container">^UP^</a></div>
+        <script>
+            var data,chap,htm;
+            document.querySelector("#b1").addEventListener( "click", function() {
+                var p = document.querySelector('#file').value;
+                $.ajax({
+                    url: "http://127.0.0.1:5000/",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ p })
+                }).done(function(datas){
+                    data = datas;
+                    console.log(data);
+                    // for(let i = 0;i < Object.keys(data).length; i++){
+
+                    // }
+                    var chapi = [];
+                    for (var i in data) {
+                        chapi.push(i);
+                    }
+                    chap = chapi;
+                    console.log(chap);
+                    console.log(data[chap[1]])
+                })
+            });
+            var count = -1;
+            document.querySelector(".next").addEventListener("click", function(){
+                console.log("clicked")
+                document.querySelector(".images").innerHTML = "";
+                if(count < -1){
+                    count = -1;
+                } else{
+                    count += 1;
+                }
+                for( var x in data[chap[count]]) {
+                    console.log(x,data[chap[count]][x])
+                    document.querySelector(".chp").innerHTML = data[chap[count]][x];
+                    // htm = "<img src="+"{{ url_for('static', filename='manga/%path%') }}"+">";
+                    htm = "<img src='%path%'>";
+                    htm = htm.replace('%path%',data[chap[count]][x]);
+                    console.log(htm)
+                    document.querySelector(".images").insertAdjacentHTML("beforeend", htm);
+                }
+            })
+            document.querySelector(".prev").addEventListener("click", function(){
+                console.log("clicked")
+                document.querySelector(".images").innerHTML = "";
+                if(count < -1){
+                    count = -1;
+                } else{
+                    count -= 1;
+                }
+                for( var x in data[chap[count]]) {
+                    document.querySelector(".chp").innerHTML = data[chap[count]][x];
+                    htm = "<img src="+"{{ url_for('static', filename='manga/%path%') }}"+">";
+                    htm = htm.replace('%path%',data[chap[count]][x])
+                    document.querySelector(".images").insertAdjacentHTML("beforeend", htm);
+                }
+            })
+        </script>
+    </body>
+</html>
